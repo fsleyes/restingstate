@@ -487,6 +487,93 @@ summary(reg_target_control_pair1)</code></pre>
 ## Residual standard error: 1.557 on 8 degrees of freedom
 ## Multiple R-squared:  0.267,  Adjusted R-squared:  0.08376 
 ## F-statistic: 1.457 on 2 and 8 DF,  p-value: 0.2887</code></pre>
+<p>now using induction average as outcome</p>
+<pre class="r"><code>reg_induction_avg_pair1 &lt;- lm(induction_avg ~ diff_pair1, data = data)
+summary(reg_induction_avg_pair1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = induction_avg ~ diff_pair1, data = data)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -6.966 -4.314  1.957  3.259  7.622 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  50.5874     3.8281  13.215 3.37e-07 ***
+## diff_pair1   -0.2635     0.3164  -0.833    0.427    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.247 on 9 degrees of freedom
+## Multiple R-squared:  0.07152,    Adjusted R-squared:  -0.03165 
+## F-statistic: 0.6932 on 1 and 9 DF,  p-value: 0.4266</code></pre>
+<p>also while controlling for date</p>
+<pre class="r"><code>reg_induction_avg_pair1_controlled.1 &lt;- lm(induction_avg ~ diff_pair1 + diff_date, data = data)
+summary(reg_induction_avg_pair1_controlled.1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = induction_avg ~ diff_pair1 + diff_date, data = data)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -9.044 -1.231  1.173  2.748  5.884 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 54.58349    4.48670  12.166 1.93e-06 ***
+## diff_pair1  -0.07080    0.32406  -0.218    0.833    
+## diff_date   -0.03235    0.02175  -1.488    0.175    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.925 on 8 degrees of freedom
+## Multiple R-squared:  0.2727, Adjusted R-squared:  0.09087 
+## F-statistic:   1.5 on 2 and 8 DF,  p-value: 0.2798</code></pre>
+<p>no significance with either models for induction average–what about
+induction learning (post - pre)? now using induction average as
+outcome</p>
+<pre class="r"><code>reg_induction_learning_pair1 &lt;- lm(induction_learning ~ diff_pair1, data = data)
+summary(reg_induction_learning_pair1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = induction_learning ~ diff_pair1, data = data)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -68.62 -27.79   5.46  31.82  50.54 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)   37.771     30.220   1.250    0.243
+## diff_pair1     1.940      2.498   0.777    0.457
+## 
+## Residual standard error: 41.42 on 9 degrees of freedom
+## Multiple R-squared:  0.06281,    Adjusted R-squared:  -0.04132 
+## F-statistic: 0.6032 on 1 and 9 DF,  p-value: 0.4573</code></pre>
+<p>also while controlling for date–big difference? wondering why, also
+weird how time is significant as well</p>
+<pre class="r"><code>reg_induction_learning_pair1_controlled.1 &lt;- lm(induction_learning ~ diff_pair1 + diff_date, data = data)
+summary(reg_induction_learning_pair1_controlled.1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = induction_learning ~ diff_pair1 + diff_date, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -25.816 -13.627   3.108  15.043  24.371 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 97.93280   18.42358   5.316 0.000715 ***
+## diff_pair1   4.84062    1.33066   3.638 0.006610 ** 
+## diff_date   -0.48709    0.08931  -5.454 0.000606 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 20.22 on 8 degrees of freedom
+## Multiple R-squared:  0.8014, Adjusted R-squared:  0.7517 
+## F-statistic: 16.14 on 2 and 8 DF,  p-value: 0.001557</code></pre>
 
 
 

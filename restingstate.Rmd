@@ -74,3 +74,31 @@ i then went and subtracted the raw control scores from the raw pre scores and to
 reg_target_control_pair1 <- lm(target_control_diff ~ diff_pair1 + diff_date, data = data)
 summary(reg_target_control_pair1)
 ```
+
+
+now using induction average as outcome
+```{r}
+reg_induction_avg_pair1 <- lm(induction_avg ~ diff_pair1, data = data)
+summary(reg_induction_avg_pair1)
+```
+
+
+also while controlling for date 
+```{r}
+reg_induction_avg_pair1_controlled.1 <- lm(induction_avg ~ diff_pair1 + diff_date, data = data)
+summary(reg_induction_avg_pair1_controlled.1)
+```
+
+no significance with either models for induction average--what about induction learning (post - pre)?
+now using induction average as outcome
+```{r}
+reg_induction_learning_pair1 <- lm(induction_learning ~ diff_pair1, data = data)
+summary(reg_induction_learning_pair1)
+```
+
+
+also while controlling for date--big difference? wondering why, also weird how time is significant as well
+```{r}
+reg_induction_learning_pair1_controlled.1 <- lm(induction_learning ~ diff_pair1 + diff_date, data = data)
+summary(reg_induction_learning_pair1_controlled.1)
+```
