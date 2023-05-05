@@ -46,6 +46,13 @@ summary(reg_target_pair1)
 ```
 
 
+controlling for date, phobias and dosage group
+```{r}
+reg_target_pair1_controlled.1 <- lm(diff_target ~ diff_pair1 + diff_date + num..phobias + dosage, data = data)
+summary(reg_target_pair1_controlled.1)
+```
+
+
 michelle wanted to control for time between decoder/post, so here--is still significant with p = .0323
 ```{r}
 reg_target_pair1_controlled.1 <- lm(diff_target ~ diff_pair1 + diff_date, data = data)
@@ -101,4 +108,46 @@ also while controlling for date--big difference? wondering why, also weird how t
 ```{r}
 reg_induction_learning_pair1_controlled.1 <- lm(induction_learning ~ diff_pair1 + diff_date, data = data)
 summary(reg_induction_learning_pair1_controlled.1)
+```
+
+induction learning with date, phobias, dosage
+```{r}
+reg_induction_learning_pair1_controlled.1 <- lm(induction_learning ~ diff_pair1 + diff_date + num..phobias + dosage, data = data)
+summary(reg_induction_learning_pair1_controlled.1)
+```
+
+
+scatterplot for amygdala
+```{r}
+test <- ggplot(data, aes(x = diff_pair1, y = diff_target)) +
+  geom_point()
+test
+```
+
+
+scatterplot for induction learning
+```{r}
+test <- ggplot(data, aes(x = diff_pair1, y = induction_learning)) +
+  geom_point()
+test
+```
+
+
+what happens if we remove that one participant who has the low diff_pair1 score?
+it loses significance in the simple regression model for amygdala
+and becomes marginally significant in the regression model for induction learning
+
+```{r}
+removedData <- data[-c(10),]
+
+reg_target_pair1 <- lm(diff_target ~ diff_pair1, data = removedData)
+summary(reg_target_pair1)
+
+reg_induction_learning_pair1_controlled.1 <- lm(induction_learning ~ diff_pair1 + diff_date + num..phobias + dosage, data = removedData)
+summary(reg_induction_learning_pair1_controlled.1)
+
+
+test <- ggplot(removedData, aes(x = diff_pair1, y = induction_learning)) +
+  geom_point()
+test
 ```
