@@ -132,6 +132,8 @@ ind_learn_scatter <- ggplot(data, aes(x = diff_pair1, y = induction_learning)) +
         axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
         axis.title.x = element_text(margin = margin(t = 15)))
 ind_learn_scatter
+
+ggsave("ind_learn_scatter.png", width = 6, height = 4, dpi = 600, units = "in")
 ```
 
 
@@ -149,6 +151,8 @@ amyg_scatter <- ggplot(data, aes(x = diff_pair1, y = diff_target)) +
         axis.title.x = element_text(margin = margin(t = 15))) 
   
 amyg_scatter
+
+ggsave("amyg_scatter.png", dpi = 600, width = 6, height = 4, units = "in")
 ```
 
 note: it seems that the LESS the network changes pre to post the LESS the amygdala changes and the HIGHER the induction learning is???

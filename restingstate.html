@@ -641,14 +641,14 @@ ind_learn_scatter</code></pre>
 <p>scatterplot with the amygdala changes</p>
 <pre class="r"><code>amyg_scatter &lt;- ggplot(data, aes(x = diff_pair1, y = diff_target)) +
   geom_point() +
-  geom_smooth(method = lm, se = FALSE) +
+  stat_smooth(method = lm, se = FALSE, fullrange = TRUE)+
   labs(x = &quot;Change in Resting State Network&quot;,
        y = &quot;Change in Amygdala Activation&quot;) +
   theme_classic() +
   theme(axis.title = element_text(size = 15),
         axis.text = element_text(size = 11, colour = &quot;black&quot;),
         axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
-        axis.title.x = element_text(margin = margin(t = 15)))
+        axis.title.x = element_text(margin = margin(t = 15))) 
   
 amyg_scatter</code></pre>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
