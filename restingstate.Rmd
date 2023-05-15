@@ -4,6 +4,7 @@ output: html_document
 date: "2023-05-03"
 ---
 
+
 ```{r setup, include=FALSE}
 library(tidyverse)
 
@@ -12,12 +13,11 @@ rawData <- read.csv(file = "restingstate_data.csv", header = TRUE)
 
 data <- rawData %>% 
   filter(!is.na(pre_pair1)) %>%
-  mutate(diff_pair1 = post_pair1 - pre_pair1,
+  mutate(diff_pair1 = 0 - (post_pair1 - pre_pair1), #switching the signs
          diff_pair3 = post_pair3 - pre_pair3,
          diff_pair4 = post_pair4 - pre_pair4,
          diff_target = post.target - Pre.target,
-         diff_control = post.control - pre.control,
-         diff_pair1_flip = pre_pair1 - post_pair1)
+         diff_control = post.control - pre.control)
 data$pre_date <- lubridate::mdy(data$pre_date)
 data$post_date <- lubridate::mdy(data$post_date)
 data <- data %>% 
@@ -42,7 +42,7 @@ cor_target_pair4
 
 then just looking at pair 1, we can run a simple linear regression--we see that this is signficant with p = 0.0141
 ```{r}
-reg_target_pair1 <- lm(diff_target ~ diff_pair1_flip, data = data)
+reg_target_pair1 <- lm(diff_target ~ diff_pair1, data = data)
 summary(reg_target_pair1)
 ```
 
@@ -122,7 +122,7 @@ summary(reg_induction_learning_pair1_controlled.1)
 
 scatterplot for induction learning
 ```{r}
-ind_learn_scatter <- ggplot(data, aes(x = diff_pair1_flip, y = induction_learning)) +
+ind_learn_scatter <- ggplot(data, aes(x = diff_pair1, y = induction_learning)) +
   geom_point() +
   geom_smooth(method = lm, se = FALSE) +
   labs(x = "Change in Resting State Network",
