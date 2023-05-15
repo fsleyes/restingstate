@@ -156,7 +156,18 @@ amyg_scatter
 ggsave("amyg_scatter.png", dpi = 600, width = 6, height = 4, units = "in")
 ```
 
-note: it seems that the LESS the network changes pre to post the LESS the amygdala changes and the HIGHER the induction learning is???
+
+looks like the MORE change in RSN, the WORSE induction learning is and the MORE changes in amygdala--these two findings are a bit in conflict with one another
+
+how does the amygdala reactivity relate to the induction learning?
+```{r}
+amyg_induct <- ggplot(data, aes(x = diff_target, y = induction_learning)) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE)
+
+amyg_induct
+```
+it looks like the greater your change in amygdala, the better you are at induction learning--however, the direction that these are in means that the those who experienced increases in amygdala (because post - pre) had better induction learning??
 
 
 what happens if we remove that one participant who has the low diff_pair1 score?
