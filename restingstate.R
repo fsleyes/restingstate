@@ -37,4 +37,9 @@ summary(reg_target_pair1)
 
 
 
-
+ind_learn_scatter <- ggplot(data, aes(x = diff_pair1, y = induction_learning)) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE) +
+  labs(x = "Change in Resting State Network",
+       y = "Induction Learning Score")
+ind_learn_scatter

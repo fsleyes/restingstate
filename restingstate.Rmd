@@ -117,20 +117,41 @@ summary(reg_induction_learning_pair1_controlled.1)
 ```
 
 
-scatterplot for amygdala
-```{r}
-test <- ggplot(data, aes(x = diff_pair1, y = diff_target)) +
-  geom_point()
-test
-```
 
 
 scatterplot for induction learning
 ```{r}
-test <- ggplot(data, aes(x = diff_pair1, y = induction_learning)) +
-  geom_point()
-test
+ind_learn_scatter <- ggplot(data, aes(x = diff_pair1, y = induction_learning)) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE) +
+  labs(x = "Change in Resting State Network",
+       y = "Induction Learning Score") +
+  theme_classic() +
+  theme(axis.title = element_text(size = 15),
+        axis.text = element_text(size = 11, colour = "black"),
+        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 15)))
+ind_learn_scatter
 ```
+
+
+scatterplot with the amygdala changes
+```{r}
+amyg_scatter <- ggplot(data, aes(x = diff_pair1, y = diff_target)) +
+  geom_point() +
+  stat_smooth(method = lm, se = FALSE, fullrange = TRUE)+
+  labs(x = "Change in Resting State Network",
+       y = "Change in Amygdala Activation") +
+  theme_classic() +
+  theme(axis.title = element_text(size = 15),
+        axis.text = element_text(size = 11, colour = "black"),
+        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 15))) 
+  
+amyg_scatter
+```
+
+note: it seems that the LESS the network changes pre to post the LESS the amygdala changes and the HIGHER the induction learning is???
 
 
 what happens if we remove that one participant who has the low diff_pair1 score?
