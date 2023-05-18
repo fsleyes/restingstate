@@ -7,6 +7,7 @@ date: "2023-05-03"
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(jtools)
 
 
 rawData <- read.csv(file = "restingstate_data.csv", header = TRUE)
@@ -139,10 +140,11 @@ ggsave("ind_learn_scatter.png", width = 6, height = 4, dpi = 600, units = "in")
 
 
 scatterplot with the amygdala changes
+making the line red instead of blue
 ```{r}
 amyg_scatter <- ggplot(data, aes(x = diff_pair1, y = diff_target)) +
   geom_point() +
-  stat_smooth(method = lm, se = FALSE, fullrange = TRUE)+
+  stat_smooth(method = lm, se = FALSE, fullrange = TRUE, color = "#BE3011")+
   labs(x = "Change in Resting State Network",
        y = "Change in Amygdala Activation") +
   theme_classic() +
