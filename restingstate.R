@@ -45,4 +45,12 @@ ind_learn_scatter <- ggplot(data, aes(x = diff_pair1, y = induction_learning)) +
 ind_learn_scatter
 
 
+#calculations for clinicaltrials
 
+CTdata <- read.csv(file = "restingstate_data.csv", header = TRUE) %>%
+  mutate(diff_target = post.target - Pre.target)
+
+avg_amyg_red <- CTdata %>%
+  group_by(dosage) %>%
+  summarise(avg = mean(diff_target),
+            sd = sd(diff_target))
