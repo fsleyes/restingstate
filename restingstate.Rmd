@@ -27,6 +27,10 @@ data <- data %>%
          target_control_post_raw = post.target - post.control,
          target_control_diff = target_control_post_raw - target_control_pre_raw)
 
+
+vincent_df <- file.path("~/R Files/restingstate/vincent_data/vincent_df.csv")
+
+vincent_final_data <- read.csv(file = vincent_df, header = TRUE)
 ```
 
 
@@ -189,4 +193,23 @@ summary(reg_induction_learning_pair1_controlled.1)
 test <- ggplot(removedData, aes(x = diff_pair1, y = induction_learning)) +
   geom_point()
 test
+```
+
+
+
+
+now to replicate vincent's analysis
+```{r}
+vincent_final_data <- vincent_final_data %>%
+  mutate(pair1_diff = pair1_post - pair_1_pre,
+         pair2_diff = pair2_post - pair_2_pre,
+         amyg_target_diff = Amyg_D_2 - Amyg_D_1,
+         amyg_control_diff = Amyg_C_2 - Amyg_C_1)
+
+
+vincent_reg_pair1 <- lm(amyg_target_diff ~ pair1_diff + amyg_control_diff, data = vincent_final_data)
+
+vincent_reg_pair2 <- lm(amyg_target_diff ~ pair2_diff + amyg_control_diff, data = vincent_final_data)
+summary(vincent_reg_pair1)
+summary(vincent_reg_pair2)
 ```

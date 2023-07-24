@@ -60,10 +60,10 @@ avg_amyg_red <- CTdata %>%
 
 #writing new code for vincent's data to replicate analysis
 
-vincent_wd <- file.path("~/R Files/restingstate/vincent_data/DecNef_Review.sav")
-vincent_df <- read_sav(vincent_wd)
+#vincent_wd <- file.path("~/R Files/restingstate/vincent_data/DecNef_Review.sav")
+vincent_df <- file.path("~/R Files/restingstate/vincent_data/vincent_df.csv")
 
-write.csv(vincent_df, file = "vincent_df.csv")
+vincent_final_data <- read.csv(file = vincent_df, header = TRUE)
 
 vincent_long <- vincent_df %>% 
   select(Participant, Amyg_D_1:Amyg_C_2) %>% 
