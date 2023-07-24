@@ -1,5 +1,6 @@
 library(tidyverse)
 library(jtools)
+library(haven)
 
 rawData <- read.csv(file = "restingstate_data.csv", header = TRUE)
 
@@ -54,3 +55,22 @@ avg_amyg_red <- CTdata %>%
   group_by(dosage) %>%
   summarise(avg = mean(diff_target),
             sd = sd(diff_target))
+
+
+
+#writing new code for vincent's data to replicate analysis
+
+vincent_wd <- file.path("~/R Files/restingstate/vincent_data/DecNef_Review.sav")
+vincent_df <- read_sav(vincent_wd)
+
+write.csv(vincent_df, file = "vincent_df.csv")
+
+vincent_long <- vincent_df %>% 
+  select(Participant, Amyg_D_1:Amyg_C_2) %>% 
+  pivot_longer(cols = Amyg_D_1:Amyg_C_2,
+               names_to = "amygdala",
+               values_to = "activation") 
+
+test_plot <- ggplot(data = vincent_long, mapping = aes(x = amygdala, y = activation)) +
+  geom_col()
+test_plot 
