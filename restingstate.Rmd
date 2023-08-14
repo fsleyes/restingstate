@@ -155,7 +155,7 @@ amyg_scatter <- ggplot(data, aes(x = diff_pair1, y = diff_target)) +
   theme(axis.title = element_text(size = 15),
         axis.text = element_text(size = 11, colour = "black"),
         axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
-        axis.title.x = element_text(margin = margin(t = 15)) #make the numbers on axes larger
+        axis.title.x = element_text(margin = margin(t = 15))) #make the numbers on axes larger
   
 amyg_scatter
 
