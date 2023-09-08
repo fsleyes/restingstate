@@ -59,6 +59,26 @@ summary(reg_target_pair1_controlled.1)
 ```
 
 
+doing a hierarchical regression in order to find the R2 for just the predictor
+```{r}
+intercept = lm(diff_target ~ 1, data = data)
+model1 = lm(diff_target ~ num..phobias, data = data)
+model2 = lm(diff_target ~ num..phobias + dosage, data = data)
+model3 = lm(diff_target ~ num..phobias + dosage + diff_date, data = data)
+model4 = lm(diff_target ~ num..phobias + dosage + diff_date + diff_pair1, data = data)
+anova(intercept, model1, model2, model3, model4)
+```
+to find the R2, we do:
+```{r}
+#SS model 3 - model 4
+R2 <- 20.4493 - 7.8373
+
+#divide by total SS of model
+R2 <- R2 / 25.7354
+
+R2
+```
+
 michelle wanted to control for time between decoder/post, so here--is still significant with p = .0323
 ```{r}
 reg_target_pair1_controlled.1 <- lm(diff_target ~ diff_pair1 + diff_date, data = data)
