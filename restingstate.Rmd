@@ -61,6 +61,12 @@ reg_target_pair1_controlled.2 <- lm(diff_target ~ diff_pair1 + diff_control + di
 summary(reg_target_pair1_controlled.2)
 ```
 
+what if we try to run the same analysis but for the control?
+```{r}
+reg_control_pair1_controlled <- lm(diff_control ~ diff_pair1 + diff_date + num..phobias + dosage, data = data)
+summary(reg_control_pair1_controlled)
+```
+no significant results when running for control!!
 
 doing a hierarchical regression in order to find the R2 for just the predictor
 ```{r}
@@ -87,6 +93,9 @@ michelle wanted to control for time between decoder/post, so here--is still sign
 reg_target_pair1_controlled.1 <- lm(diff_target ~ diff_pair1 + diff_date, data = data)
 summary(reg_target_pair1_controlled.1)
 ```
+
+
+
 
 
 now adding to the model by controlling for the control difference in activation--becomes only marginally significant with p = .0509
