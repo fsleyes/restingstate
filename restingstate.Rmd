@@ -181,7 +181,7 @@ making the line red instead of blue
 amyg_scatter <- ggplot(data, aes(x = diff_pair1, y = diff_target)) +
   geom_point() +
   stat_smooth(method = lm, se = FALSE, fullrange = TRUE, color = "#BE3011")+
-  labs(x = "Post-Pre Connectivity Z Statistic",
+  labs(x = "Post-Pre Resting State Connectivity Z Statistic",
        y = "Amygdala Post-Pre Beta Value") +
   theme_classic() +
   theme(axis.title = element_text(size = 15),
