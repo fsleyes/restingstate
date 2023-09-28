@@ -57,6 +57,9 @@ controlling for date, phobias and dosage group
 reg_target_pair1_controlled.1 <- lm(diff_target ~ diff_pair1 + diff_date + num..phobias + dosage, data = data)
 summary(reg_target_pair1_controlled.1)
 
+reg_control_pair1 <- lm(diff_control ~ diff_pair1 + diff_date + num..phobias + dosage, data = data)
+summary(reg_control_pair1)
+
 reg_target_pair1_controlled.2 <- lm(diff_target ~ diff_pair1 + diff_control + diff_date + num..phobias + dosage, data = data)
 summary(reg_target_pair1_controlled.2)
 ```
