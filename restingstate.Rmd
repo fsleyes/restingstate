@@ -91,6 +91,25 @@ R2 <- R2 / 25.7354
 R2
 ```
 
+
+doing r2 for the control animal
+```{r}
+intercept = lm(diff_control ~ 1, data = data)
+model1 = lm(diff_control ~ num..phobias, data = data)
+model2 = lm(diff_control ~ num..phobias + dosage, data = data)
+model3 = lm(diff_control ~ num..phobias + dosage + diff_date, data = data)
+model4 = lm(diff_control ~ num..phobias + dosage + diff_date + diff_pair1, data = data)
+anova(intercept, model1, model2, model3, model4)
+```
+to find R2, 
+```{r}
+R2_2 <- 9.6771 - 9.5434
+R2_2 <- R2_2 / 15.5502
+
+R2_2
+```
+
+
 michelle wanted to control for time between decoder/post, so here--is still significant with p = .0323
 ```{r}
 reg_target_pair1_controlled.1 <- lm(diff_target ~ diff_pair1 + diff_date, data = data)
