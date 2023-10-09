@@ -27,6 +27,15 @@ data <- data %>%
          target_control_post_raw = post.target - post.control,
          target_control_diff = target_control_post_raw - target_control_pre_raw)
 
+stroopRaw <- read.csv(file = "stroop_rts_correctOnly.csv", header = TRUE)
+
+stroopData <- stroopRaw %>%
+  filter(!is.na(pre_pair1)) %>%
+  mutate(diff_pair1 = 0 - (post_pair1 - pre_pair1)) %>%
+  mutate(diff_target = targ_post - targ_pre,
+         diff_control = con_post - con_pre)
+  
+
 
 vincent_df <- file.path("~/R Files/restingstate/vincent_data/vincent_df.csv")
 
@@ -266,4 +275,13 @@ vincent_reg_pair1 <- lm(amyg_target_diff ~ pair1_diff + amyg_control_diff, data 
 vincent_reg_pair2 <- lm(amyg_target_diff ~ pair2_diff + amyg_control_diff, data = vincent_final_data)
 summary(vincent_reg_pair1)
 summary(vincent_reg_pair2)
+```
+
+
+
+
+this is the stroop data comparison
+```{r}
+stroop <- lm(diff_target ~ diff_pair1 + num..phobias + dosage, data = stroopData)
+summary(stroop)
 ```

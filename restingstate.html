@@ -519,6 +519,32 @@ R2 &lt;- R2 / 25.7354
 
 R2</code></pre>
 <pre><code>## [1] 0.4900643</code></pre>
+<p>doing r2 for the control animal</p>
+<pre class="r"><code>intercept = lm(diff_control ~ 1, data = data)
+model1 = lm(diff_control ~ num..phobias, data = data)
+model2 = lm(diff_control ~ num..phobias + dosage, data = data)
+model3 = lm(diff_control ~ num..phobias + dosage + diff_date, data = data)
+model4 = lm(diff_control ~ num..phobias + dosage + diff_date + diff_pair1, data = data)
+anova(intercept, model1, model2, model3, model4)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: diff_control ~ 1
+## Model 2: diff_control ~ num..phobias
+## Model 3: diff_control ~ num..phobias + dosage
+## Model 4: diff_control ~ num..phobias + dosage + diff_date
+## Model 5: diff_control ~ num..phobias + dosage + diff_date + diff_pair1
+##   Res.Df     RSS Df Sum of Sq      F Pr(&gt;F)
+## 1     10 15.5502                           
+## 2      9 15.4638  1    0.0864 0.0543 0.8235
+## 3      8 11.7939  1    3.6699 2.3073 0.1796
+## 4      7  9.6771  1    2.1169 1.3309 0.2925
+## 5      6  9.5434  1    0.1337 0.0840 0.7816</code></pre>
+<p>to find R2,</p>
+<pre class="r"><code>R2_2 &lt;- 9.6771 - 9.5434
+R2_2 &lt;- R2_2 / 15.5502
+
+R2_2</code></pre>
+<pre><code>## [1] 0.00859796</code></pre>
 <p>michelle wanted to control for time between decoder/post, so here–is
 still significant with p = .0323</p>
 <pre class="r"><code>reg_target_pair1_controlled.1 &lt;- lm(diff_target ~ diff_pair1 + diff_date, data = data)
@@ -884,6 +910,30 @@ summary(vincent_reg_pair1)</code></pre>
 ## Residual standard error: 2.926 on 14 degrees of freedom
 ## Multiple R-squared:  0.3569, Adjusted R-squared:  0.2651 
 ## F-statistic: 3.885 on 2 and 14 DF,  p-value: 0.04548</code></pre>
+<p>this is the stroop data comparison</p>
+<pre class="r"><code>stroop &lt;- lm(diff_target ~ diff_pair1 + num..phobias + dosage, data = stroopData)
+summary(stroop)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = diff_target ~ diff_pair1 + num..phobias + dosage, 
+##     data = stroopData)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.190591 -0.101004 -0.007788  0.075527  0.246133 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)   0.27836    0.26233   1.061   0.3295  
+## diff_pair1   -0.00793    0.01047  -0.757   0.4776  
+## num..phobias -0.17413    0.07980  -2.182   0.0718 .
+## dosage        0.04937    0.04090   1.207   0.2728  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1649 on 6 degrees of freedom
+## Multiple R-squared:  0.5429, Adjusted R-squared:  0.3144 
+## F-statistic: 2.375 on 3 and 6 DF,  p-value: 0.169</code></pre>
 
 
 

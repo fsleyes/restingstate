@@ -4,7 +4,7 @@ library(haven)
 
 rawData <- read.csv(file = "restingstate_data.csv", header = TRUE)
 
-data <- rawData %>% 
+data <- rawData %>% #this is not switched
   filter(!is.na(pre_pair1)) %>%
   mutate(diff_pair1 = post_pair1 - pre_pair1,
          diff_pair3 = post_pair3 - pre_pair3,
