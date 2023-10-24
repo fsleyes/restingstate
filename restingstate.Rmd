@@ -213,7 +213,7 @@ amyg_scatter <- ggplot(data, aes(x = diff_pair1, y = diff_target)) +
   geom_point() +
   stat_smooth(method = lm, se = FALSE, fullrange = TRUE, color = "#BE3011")+
   labs(x = "Post-Pre Resting State Connectivity Z Statistic",
-       y = "Amygdala Post-Pre Beta Value") +
+       y = "Target Amygdala Post-Pre Beta Value") +
   theme_classic() +
   theme(axis.title = element_text(size = 15),
         axis.text = element_text(size = 11, colour = "black"),
@@ -222,7 +222,7 @@ amyg_scatter <- ggplot(data, aes(x = diff_pair1, y = diff_target)) +
   
 amyg_scatter
 
-ggsave("amyg_scatter.png", dpi = 600, width = 6, height = 4, units = "in")
+ggsave("target_scatter.png", dpi = 600, width = 6, height = 4, units = "in")
 ```
 
 
