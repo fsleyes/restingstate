@@ -226,6 +226,26 @@ ggsave("amyg_scatter.png", dpi = 600, width = 6, height = 4, units = "in")
 ```
 
 
+doing an amygdala scatterplot for the control condition
+```{r}
+control_scatter <- ggplot(data, aes(x = diff_pair1, y = diff_control)) +
+  geom_point() +
+  stat_smooth(method = lm, se = FALSE, fullrange = TRUE, color = "#BE3011")+
+  labs(x = "Post-Pre Resting State Connectivity Z Statistic",
+       y = "Control Amygdala Post-Pre Beta Value") +
+  theme_classic() +
+  theme(axis.title = element_text(size = 15),
+        axis.text = element_text(size = 11, colour = "black"),
+        axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 15))) #make the numbers on axes larger
+control_scatter
+
+ggsave("control_scatter.png", dpi = 600, width = 6, height = 4, units = "in")
+
+
+```
+
+
 looks like the MORE change in RSN, the WORSE induction learning is and the MORE changes in amygdala--these two findings are a bit in conflict with one another
 
 how does the amygdala reactivity relate to the induction learning?
