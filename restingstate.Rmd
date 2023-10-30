@@ -73,6 +73,14 @@ reg_target_pair1_controlled.2 <- lm(diff_target ~ diff_pair1 + diff_control + di
 summary(reg_target_pair1_controlled.2)
 ```
 
+how about switching the connectivity and the amygdala around and include control as interaction?
+```{r}
+flipped <- lm(diff_pair1 ~ diff_target*diff_control + diff_date + num..phobias + dosage, data = data)
+summary(flipped)
+```
+
+
+
 what if we try to run the same analysis but for the control?
 ```{r}
 reg_control_pair1_controlled <- lm(diff_control ~ diff_pair1 + diff_date + num..phobias + dosage, data = data)
